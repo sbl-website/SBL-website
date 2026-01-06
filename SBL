@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SBL – Backyard Basketball League</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #111;
+    color: #fff;
+}
+header {
+    background: #ff7a00;
+    padding: 20px;
+    text-align: center;
+}
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    background: #000;
+    padding: 10px;
+}
+nav button {
+    background: #ff7a00;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+section {
+    display: none;
+    padding: 20px;
+}
+section.active {
+    display: block;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+th, td {
+    border: 1px solid #555;
+    padding: 8px;
+    text-align: center;
+}
+input {
+    padding: 5px;
+}
+.bracket input {
+    width: 100%;
+    margin: 5px 0;
+}
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #000;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>SBL – Backyard Basketball League</h1>
+    <p>Where Legends Are Made</p>
+</header>
+
+<nav>
+    <button onclick="showSection('home')">Home</button>
+    <button onclick="showSection('schedule')">Schedule</button>
+    <button onclick="showSection('bracket')">Playoffs</button>
+    <button onclick="showSection('history')">History & Records</button>
+</nav>
+
+<section id="home" class="active">
+    <h2>Welcome to the SBL</h2>
+    <p>The official site of the SBL backyard basketball league.</p>
+</section>
+
+<section id="schedule">
+    <h2>Team Schedule</h2>
+    <table>
+        <tr><th>Date</th><th>Team A</th><th>Team B</th></tr>
+        <tr><td>June 10</td><td>Heat</td><td>Bulls</td></tr>
+        <tr><td>June 12</td><td>Lakers</td><td>Celtics</td></tr>
+    </table>
+</section>
+
+<section id="bracket">
+    <h2>Playoff Bracket Predictions</h2>
+    <p>Fans can predict winners (saved on their device).</p>
+
+    <div class="bracket">
+        <label>Game 1 Winner:</label>
+        <input id="g1" placeholder="Team Name">
+
+        <label>Game 2 Winner:</label>
+        <input id="g2" placeholder="Team Name">
+
+        <label>Champion:</label>
+        <input id="champ">
+
+        <button onclick="saveBracket()">Save Prediction</button>
+    </div>
+</section>
+
+<section id="history">
+    <h2>SBL History & Records</h2>
+    <ul>
+        <li>🏆 Most Championships: TBD</li>
+        <li>🔥 Highest Scoring Game: TBD</li>
+        <li>👑 MVPs by Season</li>
+    </ul>
+</section>
+
+<footer>
+    <p>© SBL Backyard Basketball League</p>
+</footer>
+
+<script>
+function showSection(id) {
+    document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+
+function saveBracket() {
+    localStorage.setItem("g1", document.getElementById("g1").value);
+    localStorage.setItem("g2", document.getElementById("g2").value);
+    localStorage.setItem("champ", document.getElementById("champ").value);
+    alert("Prediction Saved!");
+}
+
+window.onload = function() {
+    document.getElementById("g1").value = localStorage.getItem("g1") || "";
+    document.getElementById("g2").value = localStorage.getItem("g2") || "";
+    document.getElementById("champ").value = localStorage.getItem("champ") || "";
+}
+</script>
+
+</body>
+</html>
